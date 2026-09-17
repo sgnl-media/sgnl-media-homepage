@@ -130,3 +130,19 @@
 @media(max-width:600px) {
   .reels { display:none; }
 }
+
+/* Testimonials are prepared as a sideways track for additional client videos. */
+.testimonial-track { display:flex; gap:16px; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scrollbar-width:none; padding-bottom:8px; }
+.testimonial-track::-webkit-scrollbar { display:none; }
+.testimonial-slide { flex:0 0 min(100%,620px); scroll-snap-align:start; }
+.testimonial-slide .story-card { min-height:0; }
+.testimonial-slide .story-layout--single .story-video { width:100%; max-width:none; aspect-ratio:9/16; }
+.testimonial-slide .story-video-poster { object-fit:cover; }
+.cal-modal { width:min(960px, calc(100vw - 32px)); height:min(760px, calc(100vh - 32px)); padding:0; overflow:hidden; }
+.cal-modal iframe { width:100%; height:100%; border:0; background:#fff; }
+@media(max-width:600px) {
+  .header-actions { margin-left:auto; }
+  .testimonial-track { margin-right:-5vw; padding-right:5vw; }
+  .testimonial-slide { flex-basis:86vw; }
+  .cal-modal { width:calc(100vw - 20px); height:calc(100vh - 20px); }
+}
