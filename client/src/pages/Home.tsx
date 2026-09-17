@@ -28,9 +28,9 @@ function StoryCard() {
     <div className="story-heading"><span className="story-quote">“</span><span className="chip chip-dark">Client story</span></div>
     <div className="story-layout">
       <button className={`story-video ${playing ? "is-playing" : ""}`} type="button" onClick={() => setPlaying(true)} aria-label="Play Tysean client story">
-        {playing ? <iframe src="https://www.youtube-nocookie.com/embed/465YG7rxG3o?autoplay=1&rel=0" title="Tysean client story" allow="autoplay; encrypted-media" allowFullScreen /> : <><span className="story-video-mark">HI</span><span className="play-button"><Play size={24} fill="currentColor" /></span><span className="story-video-caption">TYSEAN / HARDLY INITIATED</span></>}
+        {playing ? <video src="/manus-storage/videoplayback(1)_835177cd.mp4" title="Tysean client story" controls autoPlay playsInline /> : <><video className="story-video-poster" src="/manus-storage/videoplayback(1)_835177cd.mp4" muted autoPlay loop playsInline /><span className="story-video-mark">HI</span><span className="play-button"><Play size={24} fill="currentColor" /></span><span className="story-video-caption">TYSEAN / HARDLY INITIATED</span></>}
       </button>
-      <div className="story-copy"><blockquote>When Andrew came in, we didn't have a brand. He gave us one, and we still <mark>go viral every day</mark> with that look. 100% worth the money.</blockquote><cite>Tysean<br /><span>Host, Hardly Initiated</span></cite></div>
+      <div className="story-copy"><blockquote>When SGNL came in, we didn't have a brand. They gave us one, and we still <mark>go viral every day</mark> with that look. 100% worth the money.</blockquote><cite>Tysean<br /><span>Host, Hardly Initiated</span></cite></div>
     </div>
     <div className="fact-row"><div><strong>100K</strong><span>Instagram followers</span></div><div><strong>500K</strong><span>On YouTube</span></div></div>
   </article>;
