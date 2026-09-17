@@ -146,3 +146,10 @@
   .testimonial-slide { flex-basis:86vw; }
   .cal-modal { width:calc(100vw - 20px); height:calc(100vh - 20px); }
 }
+
+@media(min-width:601px) {
+  .testimonial-slide { flex-basis:clamp(180px,22vw,267px); }
+  .testimonial-slide .story-card { padding:0; background:transparent; border:0; }
+  .testimonial-slide .story-layout--single { margin-top:0; }
+  .testimonial-slide .story-layout--single .story-video { width:100%; aspect-ratio:9/16; border-radius:17px; }
+}
