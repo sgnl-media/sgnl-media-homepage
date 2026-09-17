@@ -122,3 +122,7 @@
   .story-title { font-size:29px; }
   .story-layout--single .story-video { width:62%; max-width:220px; }
 }
+
+@media(max-width:600px) {
+  .reels .section-head { display:none; }
+}
