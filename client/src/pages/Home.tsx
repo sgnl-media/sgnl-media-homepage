@@ -1,25 +1,63 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
+import { useEffect, useState } from "react";
+import { ArrowUpRight, CalendarDays, Check, ChevronLeft, ChevronRight, Menu, Play, Plus, Radio, Sparkles, X } from "lucide-react";
 
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
- */
-export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
+const process = [
+  ["01", "Diagnose", "We start with a Signal Session to find what's holding your growth back and whether we're the right team to fix it."],
+  ["02", "Build", "We build your brand system: your voice, recurring formats, visual identity, and the path from attention to booked calls."],
+  ["03", "Capture", "You give us 90 minutes on camera once a month. We turn that into 25 to 30 pieces made for each platform."],
+  ["04", "Scale", "Every month we tie your content to pipeline, not view count. We cut what isn't working and double down on what is."],
+];
 
-  return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
+const tags = ["Organic first", "Paid behind proven creative", "Tested landing pages", "Monthly capture session", "Waterfall distribution", "Brand systems", "Lead magnets"];
+
+function GrowthCard({ client, multiple, label, before, after }: { client: string; multiple: string; label: string; before: string; after: string }) {
+  return <article className="case-card growth-card">
+    <div className="chip-row"><span className="chip">{label}</span><span className="chip chip-lime">{multiple}</span></div>
+    <div className="growth-number"><span>{before}</span><b>→</b><strong>{after}</strong></div>
+    <div className="bar-stack">
+      <div className="bar-label"><span>Before</span><b>{before}</b></div><div className="bar"><i className="bar-before" /></div>
+      <div className="bar-label"><span>Now</span><b>{after}</b></div><div className="bar"><i className="bar-after" /></div>
     </div>
-  );
+    <div className="card-footer"><span>{client === "Hardly Initiated" ? "We built the brand, the look and the edit style." : "Research first. Format tested. Attention into revenue."}</span><b>{client === "Hardly Initiated" ? "Still going viral daily" : "6 months with SGNL"}</b></div>
+  </article>;
+}
+
+function StoryCard() {
+  const [playing, setPlaying] = useState(false);
+  return <article className="story-card">
+    <div className="story-heading"><span className="story-quote">“</span><span className="chip chip-dark">Client story</span></div>
+    <div className="story-layout">
+      <button className={`story-video ${playing ? "is-playing" : ""}`} type="button" onClick={() => setPlaying(true)} aria-label="Play Tysean client story">
+        {playing ? <iframe src="https://www.youtube-nocookie.com/embed/465YG7rxG3o?autoplay=1&rel=0" title="Tysean client story" allow="autoplay; encrypted-media" allowFullScreen /> : <><span className="story-video-mark">HI</span><span className="play-button"><Play size={24} fill="currentColor" /></span><span className="story-video-caption">TYSEAN / HARDLY INITIATED</span></>}
+      </button>
+      <div className="story-copy"><blockquote>When Andrew came in, we didn't have a brand. He gave us one, and we still <mark>go viral every day</mark> with that look. 100% worth the money.</blockquote><cite>Tysean<br /><span>Host, Hardly Initiated</span></cite></div>
+    </div>
+    <div className="fact-row"><div><strong>100K</strong><span>Instagram followers</span></div><div><strong>500K</strong><span>On YouTube</span></div></div>
+  </article>;
+}
+
+function ReelCard({ index, tone }: { index: string; tone: string }) {
+  return <article className="reel-card"><div className={`reel-visual ${tone}`}><span className="reel-code">{index}</span><span className="reel-vertical">SGNL / MEDIA</span><span className="reel-scan" /><span className="reel-orb" /><span className="reel-play"><Play size={13} fill="currentColor" /></span></div><div className="reel-meta"><span>Client reel</span><ArrowUpRight size={15} /></div></article>;
+}
+
+export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false); const [bookingOpen, setBookingOpen] = useState(false); const [quizOpen, setQuizOpen] = useState(false); const [announcement, setAnnouncement] = useState(true); const [selectedDate, setSelectedDate] = useState("Tue, Sep 22"); const [selectedTime, setSelectedTime] = useState("11:30 AM");
+  useEffect(() => { document.body.style.overflow = menuOpen || bookingOpen || quizOpen ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [menuOpen, bookingOpen, quizOpen]);
+  const closeMenu = () => setMenuOpen(false);
+  return <div className="site-shell" id="top">
+    {announcement && <div className="announcement-bar"><button onClick={() => setQuizOpen(true)}>Free tool: score your offer and lead magnet in 3 minutes <span>Take the quiz ↗</span></button><button aria-label="Dismiss announcement" onClick={() => setAnnouncement(false)}><X size={14} /></button></div>}
+    <header className="site-header"><a href="#top" className="wordmark">SGNL <span>Media</span></a><nav><a href="#top">Home</a><i>/</i><a href="#shows">Shows</a><i>/</i><a href="#services">Services</a></nav><div className="header-actions"><button className="header-cta" onClick={() => setBookingOpen(true)}>Book a call <ArrowUpRight size={15} /></button><button className="menu-trigger" onClick={() => setMenuOpen(true)} aria-label="Open menu"><Menu size={21} /></button></div></header>
+    {menuOpen && <div className="mobile-menu"><div className="mobile-menu-top"><span className="eyebrow">Menu</span><button onClick={closeMenu}><X size={19} /></button></div><div className="mobile-links"><a href="#top" onClick={closeMenu}>Home <ArrowUpRight size={18} /></a><a href="#shows" onClick={closeMenu}>Shows <ArrowUpRight size={18} /></a><a href="#services" onClick={closeMenu}>Services <ArrowUpRight size={18} /></a><button onClick={() => { closeMenu(); setQuizOpen(true); }}>Take the quiz <ArrowUpRight size={18} /></button></div><button className="mobile-book" onClick={() => { closeMenu(); setBookingOpen(true); }}>Book a call <ArrowUpRight size={16} /></button></div>}
+    <main>
+      <section className="hero section-rule"><div className="hero-grid" aria-hidden="true" /><div className="hero-top"><span className="eyebrow">SIGNAL DETECTED / 2026</span><span className="live"><i /> LIVE SYSTEM</span></div><div className="hero-center"><div className="signal-ring" aria-hidden="true" /><div className="hero-copy"><span className="signal-status"><Radio size={14} /> signal found</span><h1>We build marketing teams behind brands and experts.</h1><div className="hero-actions"><button className="button lime" onClick={() => setQuizOpen(true)}>Take the quiz <ArrowUpRight size={16} /></button><button className="button ghost" onClick={() => setBookingOpen(true)}>Book a call <ArrowUpRight size={16} /></button></div></div><div className="no-signal">NO SIGNAL<br /><small>searching.....</small></div></div><div className="hero-bottom"><span>Organic first. Paid behind proven creative.</span><span className="scroll-mark">SCROLL ↓</span></div></section>
+      <section className="reels section-rule" id="shows"><div className="section-head"><div><span className="eyebrow">Recent work</span><h2>Content that<br /><em>finds its audience.</em></h2></div><span className="section-count">01—03</span></div><div className="reel-track"><ReelCard index="01" tone="tone-one" /><ReelCard index="02" tone="tone-two" /><ReelCard index="03" tone="tone-three" /><ReelCard index="01" tone="tone-one" /><ReelCard index="02" tone="tone-two" /></div></section>
+      <section className="manifesto section-rule"><div className="manifesto-label"><span className="eyebrow">What we believe</span><Sparkles size={17} /></div><h2>Great brands and experts don't need another content vendor. They need a marketing team that knows what works and can prove it.</h2></section>
+      <section className="process section-rule" id="services"><div className="section-head"><div><span className="eyebrow">Four steps</span><h2>How we build<br /><em>your marketing team.</em></h2></div><div className="signal-bars"><i /><i /><i /><i /><i /></div></div><div className="process-list">{process.map(([num, title, body]) => <article className="process-step" key={num}><span className="process-number">{num}</span><h3>{title}</h3><p>{body}</p><span className="process-plus"><Plus size={17} /></span></article>)}</div><button className="button outline" onClick={() => setBookingOpen(true)}>Book a Signal Session <ArrowUpRight size={16} /></button></section>
+      <section className="results section-rule" id="results"><div className="results-intro"><span className="eyebrow">Results</span><h2>Proof over<br /><em>promises.</em></h2><p>Real accounts, real numbers. Here's what happens when a brand finally gets a system behind its content.</p></div><div className="case"><div className="case-header"><h3>Hardly Initiated <span>· Podcast</span></h3><span>8 to 9 months with SGNL</span></div><div className="hardly-grid"><GrowthCard client="Hardly Initiated" multiple="10x growth" label="Instagram followers" before="10K" after="100K" /><StoryCard /><div className="youtube-card"><div className="chip-row"><span className="chip chip-dark">YouTube</span><span className="chip chip-dark">Subscribers</span></div><strong>500K</strong><p>Hardly Initiated on YouTube, built on the same brand system.</p></div></div></div><div className="case"><div className="case-header"><h3>Vaunt <span>· SaaS</span></h3><span>6 months with SGNL</span></div><div className="vaunt-grid"><GrowthCard client="Vaunt" multiple="15x in 6 months" label="Instagram followers" before="20K" after="300K" /><div className="vaunt-card"><div className="chip-row"><span className="chip chip-dark">One trial reel</span><span className="chip chip-dark">Tested 100 times first</span></div><div className="vaunt-stat">11.3M <small>views</small></div><h4>“How much does it cost to fly private?”</h4><div className="mini-facts"><div><strong>65,395</strong><span>New followers</span></div><div><strong>118K</strong><span>Shares</span></div><div><strong>150</strong><span>Qualified leads</span></div></div><p className="vaunt-note">Not luck. We ran the same format 100 times before this one broke.</p></div></div></div><div className="results-cta"><span>Want numbers like these on your account?</span><button className="button lime" onClick={() => setBookingOpen(true)}>Book a Signal Session <ArrowUpRight size={16} /></button></div></section>
+      <section className="closing section-rule"><span className="closing-spark"><Sparkles size={27} /></span><h2>We'd love to partner with you <em>& your team.</em></h2><button className="button lime large" onClick={() => setBookingOpen(true)}>Book a call <ArrowUpRight size={17} /></button></section>
+    </main>
+    <footer className="footer"><div className="footer-main"><div><a href="#top" className="wordmark">SGNL <span>Media</span></a><p>We build marketing teams behind brands and experts.</p></div><div className="footer-links"><div><b>Company</b><a href="#top">Home</a><a href="#services">Services</a><a href="#shows">Shows</a></div><div><b>Shows</b><a href="#shows">Read the room</a><a href="#shows">What is marketing?</a><a href="#shows">SGNL CEO</a></div><div><b>Start</b><button onClick={() => setQuizOpen(true)}>Take the quiz</button><button onClick={() => setBookingOpen(true)}>Book a call</button></div></div></div><div className="footer-bottom"><span>© 2026 SGNL Media. Tampa, FL.</span><span>Privacy&nbsp;&nbsp;/&nbsp;&nbsp; Terms</span></div></footer>
+    {bookingOpen && <div className="modal-backdrop" onMouseDown={e => e.target === e.currentTarget && setBookingOpen(false)}><section className="modal-card" role="dialog" aria-modal="true"><button className="modal-close" onClick={() => setBookingOpen(false)}><X size={18} /></button><span className="eyebrow">Book a call</span><h2>Let's find the right signal for your team.</h2><p>Pick a time for a quick conversation with our team.</p><div className="calendar-heading"><CalendarDays size={15} /> September 2026 <span><ChevronLeft size={15} /><ChevronRight size={15} /></span></div><div className="date-grid">{["21", "22", "23", "24", "25"].map(d => <button className={selectedDate.endsWith(d) ? "selected" : ""} key={d} onClick={() => setSelectedDate(`Tue, Sep ${d}`)}>{d}</button>)}</div><div className="time-grid">{["10:00 AM", "11:30 AM", "2:00 PM", "3:30 PM"].map(t => <button className={selectedTime === t ? "selected" : ""} key={t} onClick={() => setSelectedTime(t)}>{t}</button>)}</div><button className="button lime modal-submit" onClick={() => setBookingOpen(false)}><Check size={16} /> Request {selectedDate} at {selectedTime}</button></section></div>}
+    {quizOpen && <div className="modal-backdrop" onMouseDown={e => e.target === e.currentTarget && setQuizOpen(false)}><section className="modal-card" role="dialog" aria-modal="true"><button className="modal-close" onClick={() => setQuizOpen(false)}><X size={18} /></button><span className="eyebrow">SGNL Quiz</span><h2>Score your offer and lead magnet in 3 minutes.</h2><p>Answer three quick questions to see where your signal is strongest and where it is getting lost.</p><div className="quiz-question"><span>01 / 03</span><strong>What are you selling right now?</strong><button onClick={() => setQuizOpen(false)}>A service</button><button onClick={() => setQuizOpen(false)}>A product</button><button onClick={() => setQuizOpen(false)}>An idea</button></div></section></div>}
+  </div>;
 }
