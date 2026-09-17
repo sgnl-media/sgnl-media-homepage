@@ -126,3 +126,7 @@
 @media(max-width:600px) {
   .reels .section-head { display:none; }
 }
+
+@media(max-width:600px) {
+  .reels { display:none; }
+}
