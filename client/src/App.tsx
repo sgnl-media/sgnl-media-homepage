@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Article from "./pages/Article";
 import Shows from "./pages/Shows";
 import ShowArticle from "./pages/ShowArticle";
+import HowToStartShowArticle from "./pages/HowToStartShowArticle";
 
 
 function Router() {
@@ -18,6 +19,7 @@ function Router() {
       <Route path={"/shows/read-the-room"} component={ShowArticle} />
       <Route path={"/shows/what-is-marketing"} component={ShowArticle} />
       <Route path={"/shows/sgnl-ceo"} component={ShowArticle} />
+      <Route path={"/articles/how-to-start-a-show-for-your-brand"} component={HowToStartShowArticle} />
       <Route path={"/article"} component={Article} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
