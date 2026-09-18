@@ -285,3 +285,30 @@
   .shows-close { min-height:520px; padding:95px 5vw; }
   .shows-close h2 { font-size:clamp(55px,15vw,76px); }
 }
+
+/* Read The Room newsletter acquisition and embedded Live Selling reel. */
+.show-format-video iframe { display:block; width:100%; height:100%; border:0; background:#000; }
+.shows-newsletter { padding:125px 7.5vw 135px; display:grid; grid-template-columns:repeat(12,1fr); gap:24px; align-items:start; background:#181919; border-bottom:1px solid var(--line); }
+.shows-newsletter-copy { grid-column:1 / 7; }
+.shows-newsletter-copy h2 { max-width:680px; margin:22px 0 26px; font-size:clamp(58px,6.8vw,96px); line-height:.87; letter-spacing:-.075em; font-weight:500; }
+.shows-newsletter-copy p { max-width:510px; margin:0; color:var(--muted); font-size:17px; line-height:1.45; }
+.shows-newsletter-form,.shows-newsletter-success { grid-column:8 / 13; margin-top:35px; border-top:1px solid var(--line); padding-top:24px; }
+.shows-newsletter-form { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.shows-newsletter-form label { display:grid; gap:9px; color:var(--muted); font:9px var(--mono); text-transform:uppercase; letter-spacing:.08em; }
+.shows-newsletter-form input { width:100%; box-sizing:border-box; padding:17px 15px; border:1px solid rgba(244,240,232,.2); border-radius:9px; outline:none; background:#202323; color:var(--paper); font:14px var(--body); transition:border-color .18s var(--ease),box-shadow .18s var(--ease); }
+.shows-newsletter-form input::placeholder { color:rgba(244,240,232,.33); }
+.shows-newsletter-form input:focus { border-color:var(--lime); box-shadow:0 0 0 3px rgba(217,255,63,.1); }
+.shows-newsletter-form .button { grid-column:1 / -1; width:100%; justify-content:space-between; margin-top:2px; }
+.shows-newsletter-form small { grid-column:1 / -1; color:rgba(244,240,232,.4); font:9px var(--mono); text-transform:uppercase; letter-spacing:.07em; }
+.shows-newsletter-success { display:grid; gap:14px; }
+.shows-newsletter-success span { color:var(--lime); font:9px var(--mono); text-transform:uppercase; letter-spacing:.09em; }
+.shows-newsletter-success strong { font-size:clamp(36px,4vw,58px); line-height:1; letter-spacing:-.06em; font-weight:500; }
+.shows-newsletter-success p { max-width:440px; margin:0; color:var(--muted); line-height:1.45; }
+@media(max-width:700px) {
+  .shows-newsletter { display:block; padding:86px 5vw 94px; }
+  .shows-newsletter-copy h2 { font-size:clamp(52px,15vw,72px); }
+  .shows-newsletter-copy p { font-size:16px; }
+  .shows-newsletter-form,.shows-newsletter-success { margin-top:50px; }
+  .shows-newsletter-form { grid-template-columns:1fr; }
+  .shows-newsletter-form .button,.shows-newsletter-form small { grid-column:1; }
+}

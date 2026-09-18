@@ -7,27 +7,30 @@ const readTheRoomFormats = [
     name: "Podcast",
     body: "Marketing Decoded—long-form conversations that make expertise impossible to miss.",
     video: "/manus-storage/marketing-decoded-web_d3e81489.mp4",
+    embed: undefined,
     href: "/shows/read-the-room",
   },
   {
-    name: "The Read",
-    body: "A sharp editorial briefing on the signals shaping the market.",
-    video: "/manus-storage/A-T-11-web_e3852aaf.mp4",
+    name: "Live Selling",
+    body: "A live format that turns attention into a clear next action.",
+    video: "/manus-storage/live-selling-web_99481ca7.mp4",
+    embed: undefined,
     href: "/shows/read-the-room",
   },
   {
     name: "In The Room",
     body: "Candid field conversations with operators doing the work.",
     video: "/manus-storage/S-S-4-web_e865066d.mp4",
+    embed: undefined,
     href: "/shows/read-the-room",
   },
 ];
 
-function FormatCard({ name, body, video, href }: (typeof readTheRoomFormats)[number]) {
+function FormatCard({ name, body, video, embed, href }: (typeof readTheRoomFormats)[number]) {
   return (
     <article className="show-format-card">
       <div className="show-format-video">
-        <video src={video} muted autoPlay loop playsInline preload="metadata" />
+        {embed ? <iframe src={embed} title={`${name} Instagram reel`} allow="autoplay; encrypted-media; picture-in-picture" loading="lazy" allowFullScreen /> : <video src={video} muted autoPlay loop playsInline preload="metadata" />}
         <span>SGNL / ORIGINAL</span>
       </div>
       <div className="show-format-copy">
@@ -42,6 +45,9 @@ function FormatCard({ name, body, video, href }: (typeof readTheRoomFormats)[num
 export default function Shows() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen || bookingOpen ? "hidden" : "";
@@ -76,6 +82,15 @@ export default function Shows() {
             <h2>Three formats,<br />one ecosystem.</h2>
           </div>
           <div className="show-format-grid">{readTheRoomFormats.map(format => <FormatCard {...format} key={format.name} />)}</div>
+        </section>
+
+        <section className="shows-newsletter">
+          <div className="shows-newsletter-copy">
+            <span className="shows-portfolio-label">Read The Room</span>
+            <h2>Read the room<br />before it changes.</h2>
+            <p>Our newsletter on positioning, media, demand, and the signals shaping what people buy next.</p>
+          </div>
+          {subscribed ? <div className="shows-newsletter-success" role="status"><span>Subscription received</span><strong>You’re in, {firstName}.</strong><p>The next edition of Read The Room will land in {email}.</p></div> : <form className="shows-newsletter-form" onSubmit={event => { event.preventDefault(); if (!firstName.trim() || !email.trim()) return; window.localStorage.setItem("sgnl-read-the-room-signup", JSON.stringify({ firstName: firstName.trim(), email: email.trim() })); setSubscribed(true); }}><label><span>First name</span><input type="text" name="firstName" value={firstName} onChange={event => setFirstName(event.target.value)} placeholder="First name" autoComplete="given-name" required /></label><label><span>Email address</span><input type="email" name="email" value={email} onChange={event => setEmail(event.target.value)} placeholder="you@company.com" autoComplete="email" required /></label><button className="button lime large" type="submit">Subscribe <ArrowUpRight size={17} /></button><small>No noise. Just the signal.</small></form>}
         </section>
 
         <section className="shows-close">
