@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { ArrowUpRight, CalendarDays, Check, ChevronLeft, ChevronRight, Menu, Play, Plus, Radio, Sparkles, X } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Check, ChevronLeft, ChevronRight, Menu, Play, Plus, Radio, Sparkles, X, Zap } from "lucide-react";
 import { Link } from "wouter";
 
 const process = [
@@ -235,7 +235,7 @@ export default function Home() {
   const openBooking = () => setBookingOpen(true); const startQuiz = () => setQuizOpen(true);
   const closeMenu = () => setMenuOpen(false);
   return <div className="site-shell" id="top">
-    {announcement && <div className="announcement-bar"><button onClick={() => startQuiz()}>Free tool: find where attention is leaking in 3 minutes <span>Take the SGNL Score ↗</span></button><button aria-label="Dismiss announcement" onClick={() => setAnnouncement(false)}><X size={14} /></button></div>}
+    {announcement && <aside className="announcement-bar" aria-label="Get your SGNL Score"><div className="announcement-viewport" role="button" tabIndex={0} aria-label="See your SGNL Score" onClick={startQuiz} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); startQuiz(); } }}><div className="announcement-track">{[0, 1].map(group => <div className="announcement-group" aria-hidden={group === 1} key={group}><div className="announcement-unit"><span className="announcement-spark" aria-hidden="true"><Zap size={24} fill="currentColor" /></span><div className="announcement-message"><strong className="announcement-title">Get your SGNL Score</strong><span className="announcement-copy">See what’s working. Fix what isn’t.</span></div><span className="announcement-cta">See your score <ArrowUpRight size={17} /></span></div></div>)}</div></div><button className="announcement-close" aria-label="Dismiss announcement" onClick={event => { event.stopPropagation(); setAnnouncement(false); }}><X size={19} /></button></aside>}
       <header className="site-header"><a href="#top" className="wordmark">SGNL <span>Media</span></a><nav><a href="#top">Home</a><i>/</i><Link href="/shows">Shows</Link><i>/</i><a href="#services">Services</a></nav><div className="header-actions"><button className="header-cta" onClick={openBooking}>Book a call <ArrowUpRight size={15} /></button><button className="menu-trigger" onClick={() => setMenuOpen(true)} aria-label="Open menu"><Menu size={21} /></button></div></header>
     {menuOpen && <div className="mobile-menu"><div className="mobile-menu-top"><span className="eyebrow">Menu</span><button onClick={closeMenu}><X size={19} /></button></div><div className="mobile-links"><a href="#top" onClick={closeMenu}>Home <ArrowUpRight size={18} /></a><Link href="/shows" onClick={closeMenu}>Shows <ArrowUpRight size={18} /></Link><a href="#services" onClick={closeMenu}>Services <ArrowUpRight size={18} /></a><button onClick={() => { closeMenu(); startQuiz(); }}>Take the quiz <ArrowUpRight size={18} /></button></div><button className="mobile-book" onClick={() => { closeMenu(); openBooking(); }}>Book a call <ArrowUpRight size={16} /></button></div>}
     <main>

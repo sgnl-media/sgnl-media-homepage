@@ -753,3 +753,94 @@
   .editorial-hero-copy p { font-size:16px; }
   .editorial-byline { gap:8px 10px; font-size:8px; }
 }
+
+/* SGNL Score acquisition banner — high-contrast editorial utility strip. */
+.announcement-bar { min-height:78px; height:auto; padding:0 70px 0 4.4vw; border-top:1px solid var(--ink); border-bottom:1px solid var(--ink); background:var(--lime); color:var(--ink); display:flex; align-items:center; justify-content:center; position:relative; }
+.announcement-inner { width:min(100%,1180px); display:grid; grid-template-columns:auto minmax(max-content,1.45fr) minmax(max-content,.8fr) auto; align-items:center; gap:24px; }
+.announcement-spark { width:49px; height:38px; padding-right:20px; border-right:1px solid rgba(20,21,21,.5); display:grid; place-items:center start; }
+.announcement-title { font-family:var(--display); font-size:clamp(22px,2.25vw,34px); line-height:.95; font-weight:700; letter-spacing:-.055em; text-transform:uppercase; white-space:nowrap; }
+.announcement-copy { padding-left:24px; border-left:1px solid rgba(20,21,21,.5); font-family:var(--display); font-size:clamp(13px,1.35vw,18px); font-weight:500; letter-spacing:-.025em; white-space:nowrap; }
+.announcement-cta { min-width:210px; min-height:50px; padding:0 24px; border:1px solid var(--ink); border-radius:2px; background:var(--ink); color:var(--lime); display:inline-flex; align-items:center; justify-content:space-between; gap:24px; font:500 12px var(--mono); text-transform:uppercase; letter-spacing:.06em; transition:background .18s var(--ease),color .18s var(--ease),transform .16s var(--ease); }
+.announcement-cta:hover { background:transparent; color:var(--ink); }
+.announcement-close { position:absolute; right:4.4vw; width:34px; height:34px; border:0; background:none; display:grid; place-items:center; transition:transform .18s var(--ease); }
+.announcement-close:hover { transform:rotate(90deg); }
+@media(max-width:900px) {
+  .announcement-bar { min-height:70px; padding-left:3vw; padding-right:52px; }
+  .announcement-inner { grid-template-columns:auto minmax(0,1fr) auto; gap:14px; }
+  .announcement-spark { width:39px; padding-right:14px; }
+  .announcement-copy { grid-column:2; padding:0; border:0; margin-top:-12px; font-size:12px; }
+  .announcement-title { align-self:end; font-size:20px; }
+  .announcement-cta { grid-column:3; grid-row:1 / span 2; min-width:168px; min-height:46px; padding:0 17px; }
+  .announcement-close { right:10px; }
+}
+@media(max-width:600px) {
+  .announcement-bar { min-height:68px; padding:8px 39px 8px 11px; text-align:left; }
+  .announcement-inner { grid-template-columns:24px minmax(0,1fr) auto; gap:8px; }
+  .announcement-spark { width:24px; height:37px; padding:0 8px 0 0; border-right:1px solid rgba(20,21,21,.42); }
+  .announcement-spark svg { width:16px; height:16px; }
+  .announcement-title { grid-column:2; font-size:clamp(12px,4vw,16px); letter-spacing:-.035em; }
+  .announcement-copy { grid-column:2; font-size:9px; line-height:1.15; margin-top:-7px; white-space:normal; }
+  .announcement-cta { grid-column:3; grid-row:1 / span 2; min-width:106px; min-height:42px; padding:0 10px; gap:8px; font-size:8px; white-space:nowrap; }
+  .announcement-cta svg { width:13px; height:13px; }
+  .announcement-close { right:5px; width:30px; height:30px; }
+  .announcement-close svg { width:16px; height:16px; }
+}
+@media(max-width:340px) {
+  .announcement-bar { padding-left:8px; padding-right:32px; }
+  .announcement-inner { grid-template-columns:18px minmax(0,1fr) auto; gap:6px; }
+  .announcement-spark { width:18px; padding-right:5px; }
+  .announcement-title { font-size:11px; }
+  .announcement-copy { font-size:7.5px; }
+  .announcement-cta { min-width:91px; min-height:38px; padding:0 7px; font-size:7px; }
+  .announcement-close { right:1px; }
+}
+
+/* Seamless sideways motion for the SGNL Score banner. */
+.announcement-bar { min-height:76px; padding:0; overflow:hidden; justify-content:flex-start; }
+.announcement-viewport { width:100%; overflow:hidden; }
+.announcement-track { display:flex; width:max-content; will-change:transform; animation:scoreBannerScroll 22s linear infinite; }
+.announcement-group { flex:0 0 100vw; width:100vw; min-height:76px; display:flex; align-items:center; }
+.announcement-unit { width:100%; padding:0 88px 0 4.4vw; display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:28px; }
+.announcement-message { min-width:0; display:grid; grid-template-columns:minmax(max-content,1.2fr) minmax(max-content,.8fr); align-items:center; }
+.announcement-title { display:block; padding-right:28px; }
+.announcement-copy { display:block; padding-left:28px; }
+.announcement-bar:hover .announcement-track,.announcement-bar:focus-within .announcement-track { animation-play-state:paused; }
+.announcement-close { z-index:3; background:var(--lime); box-shadow:-18px 0 24px 14px var(--lime); }
+@keyframes scoreBannerScroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@media(max-width:900px) {
+  .announcement-group { min-height:70px; }
+  .announcement-unit { padding-left:3vw; padding-right:68px; grid-template-columns:auto minmax(0,1fr) auto; gap:15px; }
+  .announcement-message { display:block; }
+  .announcement-title { padding:0; }
+  .announcement-copy { display:block; margin-top:5px; padding:0; border:0; }
+}
+@media(max-width:600px) {
+  .announcement-bar,.announcement-group { min-height:64px; }
+  .announcement-unit { padding:7px 42px 7px 10px; grid-template-columns:21px minmax(0,1fr) auto; gap:8px; }
+  .announcement-message { grid-column:2; }
+  .announcement-title { font-size:clamp(11px,3.7vw,15px); }
+  .announcement-copy { margin-top:4px; font-size:8.5px; line-height:1.15; }
+  .announcement-cta { grid-column:3; grid-row:auto; min-width:105px; min-height:40px; }
+  .announcement-spark { width:21px; padding-right:6px; }
+  .announcement-track { animation-duration:15s; }
+}
+@media(max-width:340px) {
+  .announcement-unit { padding-left:7px; padding-right:32px; grid-template-columns:16px minmax(0,1fr) auto; gap:5px; }
+  .announcement-title { font-size:10px; }
+  .announcement-copy { font-size:7px; }
+  .announcement-cta { min-width:86px; min-height:37px; font-size:6.5px; }
+}
+@media(prefers-reduced-motion:reduce) { .announcement-track { animation:none; transform:none; } }
+
+.announcement-bar .announcement-spark { display:grid; margin-left:0; text-decoration:none; }
+.announcement-bar .announcement-copy { display:block; margin-left:0; text-decoration:none; }
+@media(max-width:600px) {
+  .announcement-bar .announcement-spark { display:grid; }
+  .announcement-bar .announcement-copy { display:block; }
+}
+
+.announcement-viewport { cursor:pointer; outline:none; }
+.announcement-viewport:focus-visible { box-shadow:inset 0 0 0 3px var(--ink); }
+.announcement-viewport:active .announcement-cta { transform:scale(.97); }
+
+.announcement-bar .announcement-cta { display:inline-flex; margin-left:0; text-decoration:none; }
