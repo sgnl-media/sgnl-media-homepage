@@ -13,13 +13,13 @@ const tags = ["Organic first", "Paid behind proven creative", "Tested landing pa
 
 const recentWork = [
   { client: "Tom Park", video: "/manus-storage/A-T-1-web_32011964.mp4", tone: "tone-one" },
-  { client: "Andrew Moullin", video: "/manus-storage/A-E-4-web_71383a36.mp4", tone: "tone-three" },
+  { client: "Professor Lee Braver", video: "/manus-storage/A-E-4-web_71383a36.mp4", tone: "tone-three" },
   { client: "Stephanie Moullin", video: "/manus-storage/S-S-4-web_e865066d.mp4", tone: "tone-one" },
   { client: "Tom Park", video: "/manus-storage/A-T-11-web_e3852aaf.mp4", tone: "tone-two" },
   { client: "Parslee AI", video: "/manus-storage/Parlseevideo1_22-web_63963a38.mp4", tone: "tone-two" },
-  { client: "Dr.Pandit", video: "/manus-storage/June3_8566eb30.mp4", tone: "tone-one" },
+  { client: "Vaunt", video: "/manus-storage/June3_8566eb30.mp4", tone: "tone-one" },
   { client: "Tom Park", video: "/manus-storage/S-T-2_a0a4c032.mp4", tone: "tone-one" },
-  { client: "Vaunt", video: "/manus-storage/July2_5a535c6c.mp4", tone: "tone-two" },
+  { client: "Dr.Pandit", video: "/manus-storage/July2_5a535c6c.mp4", tone: "tone-two" },
   { client: "Andrew Moullin", video: "/manus-storage/A-P-11_52388ec7.mp4", tone: "tone-three" },
 ] as const;
 
