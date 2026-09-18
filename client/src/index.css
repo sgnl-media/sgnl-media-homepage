@@ -210,3 +210,11 @@
 .reel-track:hover { animation-play-state:running; }
 .hero-mobile-reels-track { animation-duration:72s; will-change:transform; }
 .reel-meta span,.hero-mobile-reel span { color:var(--paper); font-weight:500; }
+
+/* Three-column Proof over Promises wall on desktop; swipeable auto-track remains on mobile. */
+@media(min-width:601px) {
+  .testimonial-track { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(28px,6vw,92px); width:100%; overflow:visible; padding:0; }
+  .testimonial-slide { width:100%; min-width:0; max-width:none; flex:none; }
+  .testimonial-slide .story-card,.testimonial-slide .story-layout--single { width:100%; }
+  .testimonial-slide .story-layout--single .story-video { width:100%; max-width:none; aspect-ratio:9/16; }
+}

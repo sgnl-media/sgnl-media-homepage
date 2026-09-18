@@ -35,19 +35,15 @@ function GrowthCard({ client, multiple, label, before, after }: { client: string
   </article>;
 }
 
-function StoryCard() {
+function StoryCard({ video, label, mark }: { video: string; label: string; mark: string }) {
   const [playing, setPlaying] = useState(false);
   return <article className="story-card">
     <div className="story-layout story-layout--single">
-      <button className={`story-video ${playing ? "is-playing" : ""}`} type="button" onClick={() => setPlaying(true)} aria-label="Play Tysean client story">
-        {playing ? <video src="/manus-storage/videoplayback(1)_835177cd.mp4" title="Tysean client story" controls autoPlay playsInline /> : <><video className="story-video-poster" src="/manus-storage/videoplayback(1)_835177cd.mp4" muted autoPlay loop playsInline /><span className="story-video-mark">HI</span><span className="play-button"><Play size={24} fill="currentColor" /></span><span className="story-video-caption">TYSEAN / HARDLY INITIATED</span></>}
+      <button className={`story-video ${playing ? "is-playing" : ""}`} type="button" onClick={() => setPlaying(true)} aria-label={`Play ${label}`}>
+        {playing ? <video src={video} title={label} controls autoPlay playsInline /> : <><video className="story-video-poster" src={video} muted autoPlay loop playsInline preload="metadata" /><span className="story-video-mark">{mark}</span><span className="play-button"><Play size={24} fill="currentColor" /></span><span className="story-video-caption">{label}</span></>}
       </button>
     </div>
   </article>;
-}
-
-function TestimonialPlaceholder({ number, label }: { number: string; label: string }) {
-  return <article className="testimonial-placeholder"><span className="testimonial-placeholder-number">{number}</span><div className="testimonial-placeholder-icon"><Play size={20} fill="currentColor" /></div><span className="testimonial-placeholder-label">{label}</span><span className="testimonial-placeholder-note">Video coming soon</span></article>;
 }
 
 function ReelCard({ index, tone, video, client }: { index: string; tone: string; video: string; client: string }) {
@@ -70,7 +66,7 @@ export default function Home() {
       <section className="reels section-rule" id="shows"><div className="section-head"><div><span className="eyebrow">Recent work</span><h2>Content that<br /><em>finds the right audience.</em></h2></div><span className="section-count">01—09</span></div><div className="reel-track">{[...recentWork, ...recentWork].map((item, index) => <ReelCard key={`${item.client}-${index}`} index={String((index % recentWork.length) + 1).padStart(2, "0")} tone={item.tone} video={item.video} client={item.client} />)}</div></section>
       <section className="manifesto section-rule"><div className="manifesto-label"><span className="eyebrow">What we believe</span><Sparkles size={17} /></div><h2>Great brands and experts don't need another content vendor. They need a marketing team that knows what works and can prove it.</h2></section>
       <section className="process section-rule" id="services"><div className="section-head"><div><span className="eyebrow">Four steps</span><h2>How we build<br /><em>your marketing team.</em></h2></div><div className="signal-bars"><i /><i /><i /><i /><i /></div></div><div className="process-list">{process.map(([num, title, body]) => <article className="process-step" key={num}><span className="process-number">{num}</span><h3>{title}</h3><p>{body}</p><span className="process-plus"><Plus size={17} /></span></article>)}</div><button className="button outline" onClick={openBooking}>Book a Signal Session <ArrowUpRight size={16} /></button></section>
-      <section className="results section-rule" id="results"><div className="results-intro"><h2>Proof over<br /><em>promises.</em></h2><p>Real accounts, real numbers. Here's what happens when a brand finally gets a system behind its content.</p></div><div className="testimonial-track" ref={testimonialRef}><div className="testimonial-slide"><StoryCard /></div><div className="testimonial-slide"><TestimonialPlaceholder number="02" label="Client story / 02" /></div><div className="testimonial-slide"><TestimonialPlaceholder number="03" label="Client story / 03" /></div></div></section>
+      <section className="results section-rule" id="results"><div className="results-intro"><h2>Proof over<br /><em>promises.</em></h2><p>Real accounts, real numbers. Here's what happens when a brand finally gets a system behind its content.</p></div><div className="testimonial-track" ref={testimonialRef}><div className="testimonial-slide"><StoryCard video="/manus-storage/videoplayback(1)_835177cd.mp4" label="Tysean / Hardly Initiated" mark="HI" /></div><div className="testimonial-slide"><StoryCard video="/manus-storage/videoplayback(2)_00861b22.mp4" label="Client story / 02" mark="02" /></div><div className="testimonial-slide"><StoryCard video="/manus-storage/videoplayback(3)_25619c8f.mp4" label="Client story / 03" mark="03" /></div></div></section>
       <section className="closing section-rule"><span className="closing-spark"><Sparkles size={27} /></span><h2>We'd love to partner with you <em>& your team.</em></h2><button className="button lime large" onClick={openBooking}>Book a call <ArrowUpRight size={17} /></button></section>
     </main>
     <footer className="footer"><div className="footer-main"><div><a href="#top" className="wordmark">SGNL <span>Media</span></a><p>We build marketing teams behind brands and experts.</p></div><div className="footer-links"><div><b>Company</b><a href="#top">Home</a><a href="#services">Services</a><a href="#shows">Shows</a></div><div><b>Shows</b><a href="#shows">Read the room</a><a href="#shows">What is marketing?</a><a href="#shows">SGNL CEO</a></div><div><b>Start</b><button onClick={() => startQuiz()}>Take the quiz</button><button onClick={openBooking}>Book a call</button></div></div></div><div className="footer-bottom"><span>© 2026 SGNL Media. Tampa, FL.</span><span>Privacy&nbsp;&nbsp;/&nbsp;&nbsp; Terms</span></div></footer>
