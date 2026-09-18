@@ -91,7 +91,7 @@ export default function HowToStartShowArticle() {
 
   return <div className="brand-article-page" id="brand-article-top">
     <div className={`brand-reading-progress ${progressDocked ? "is-mobile-docked" : ""}`} aria-label={`${Math.round(progress)}% complete`}><i style={{ width: `${progress}%` }} />{[25, 50, 75].map(marker => <b key={marker} style={{ left: `${marker}%` }} />)}<span>{Math.round(progress)}% / 5 min</span></div>
-    <header className={`brand-article-header ${headerHidden ? "is-hidden" : ""} ${progressDocked ? "has-docked-progress" : ""}`}><Link href="/" className="editorial-mark">SGNL <span>Media</span></Link><nav><Link href="/">Home</Link><Link href="/shows">Shows</Link></nav><button onClick={() => setBookingOpen(true)}>Book a call <ArrowUpRight size={14} /></button></header>
+    <header className={`brand-article-header ${headerHidden ? "is-hidden" : ""} ${progressDocked ? "has-docked-progress" : ""}`}><Link href="/" className="editorial-mark">SGNL <span>Media</span></Link><nav><Link href="/">Home</Link><Link href="/read-the-room">Read the Room</Link></nav><button onClick={() => setBookingOpen(true)}>Book a call <ArrowUpRight size={14} /></button></header>
 
     <main>
       <section className="brand-article-hero">
@@ -148,7 +148,7 @@ export default function HowToStartShowArticle() {
       </div>
     </main>
 
-    <footer className="editorial-footer"><span>SGNL Media / Tampa, FL</span><span>© 2026</span><Link href="/shows">Explore our shows <ArrowUpRight size={14} /></Link></footer>
+    <footer className="editorial-footer"><span>SGNL Media / Tampa, FL</span><span>© 2026</span><Link href="/read-the-room">More from the Room <ArrowUpRight size={14} /></Link></footer>
 
     <button className={`article-back-top ${progress > 5 ? "is-visible" : ""}`} type="button" onClick={backToTop} aria-label="Back to top"><ArrowUp size={16} /><span>Top</span></button>
 

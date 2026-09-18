@@ -58,14 +58,14 @@ export default function Shows() {
     <div className="shows-page site-shell" id="top">
       <header className="site-header">
         <Link href="/" className="wordmark">SGNL <span>Media</span></Link>
-        <nav><Link href="/">Home</Link><i>/</i><Link href="/shows">Shows</Link><i>/</i><a href="/#services">Services</a></nav>
+        <nav><Link href="/">Home</Link><i>/</i><Link href="/shows">Shows</Link><i>/</i><Link href="/read-the-room">Read the Room</Link><i>/</i><a href="/#services">Services</a></nav>
         <div className="header-actions">
           <button className="header-cta" onClick={() => setBookingOpen(true)}>Book a call <ArrowUpRight size={15} /></button>
           <button className="menu-trigger" onClick={() => setMenuOpen(true)} aria-label="Open menu"><Menu size={21} /></button>
         </div>
       </header>
 
-      {menuOpen && <div className="mobile-menu"><div className="mobile-menu-top"><span className="eyebrow">Menu</span><button onClick={() => setMenuOpen(false)} aria-label="Close menu"><X size={19} /></button></div><div className="mobile-links"><Link href="/" onClick={() => setMenuOpen(false)}>Home <ArrowUpRight size={18} /></Link><Link href="/shows" onClick={() => setMenuOpen(false)}>Shows <ArrowUpRight size={18} /></Link><a href="/#services" onClick={() => setMenuOpen(false)}>Services <ArrowUpRight size={18} /></a></div><button className="mobile-book" onClick={() => { setMenuOpen(false); setBookingOpen(true); }}>Book a call <ArrowUpRight size={16} /></button></div>}
+      {menuOpen && <div className="mobile-menu"><div className="mobile-menu-top"><span className="eyebrow">Menu</span><button onClick={() => setMenuOpen(false)} aria-label="Close menu"><X size={19} /></button></div><div className="mobile-links"><Link href="/" onClick={() => setMenuOpen(false)}>Home <ArrowUpRight size={18} /></Link><Link href="/shows" onClick={() => setMenuOpen(false)}>Shows <ArrowUpRight size={18} /></Link><Link href="/read-the-room" onClick={() => setMenuOpen(false)}>Read the Room <ArrowUpRight size={18} /></Link><a href="/#services" onClick={() => setMenuOpen(false)}>Services <ArrowUpRight size={18} /></a></div><button className="mobile-book" onClick={() => { setMenuOpen(false); setBookingOpen(true); }}>Book a call <ArrowUpRight size={16} /></button></div>}
 
       <main className="shows-main">
         <section className="shows-portfolio-hero">
@@ -100,7 +100,7 @@ export default function Shows() {
         </section>
       </main>
 
-      <footer className="footer"><div className="footer-main"><div><Link href="/" className="wordmark">SGNL <span>Media</span></Link><p>We build the media teams behind category-leading brands and experts.</p></div><div className="footer-links"><div><b>Company</b><Link href="/">Home</Link><a href="/#services">Services</a><Link href="/shows">Shows</Link></div><div><b>Shows</b><Link href="/shows/read-the-room">Read the room</Link></div><div><b>Start</b><button onClick={() => setBookingOpen(true)}>Book a call</button></div></div></div><div className="footer-bottom"><span>© 2026 SGNL Media. Tampa, FL.</span><span>Privacy&nbsp;&nbsp;/&nbsp;&nbsp; Terms</span></div></footer>
+      <footer className="footer"><div className="footer-main"><div><Link href="/" className="wordmark">SGNL <span>Media</span></Link><p>We build the media teams behind category-leading brands and experts.</p></div><div className="footer-links"><div><b>Company</b><Link href="/">Home</Link><a href="/#services">Services</a><Link href="/shows">Shows</Link></div><div><b>Editorial</b><Link href="/read-the-room">Read the Room</Link></div><div><b>Start</b><button onClick={() => setBookingOpen(true)}>Book a call</button></div></div></div><div className="footer-bottom"><span>© 2026 SGNL Media. Tampa, FL.</span><span>Privacy&nbsp;&nbsp;/&nbsp;&nbsp; Terms</span></div></footer>
 
       {bookingOpen && <div className="modal-backdrop" onMouseDown={event => event.target === event.currentTarget && setBookingOpen(false)}><section className="modal-card cal-modal" role="dialog" aria-modal="true" aria-label="Book a call"><button className="modal-close" onClick={() => setBookingOpen(false)} aria-label="Close booking"><X size={18} /></button><iframe src="https://cal.com/andrew-moullin-qldwj3/content-engine-strategy-call?layout=month_view&useSlotsViewOnSmallScreen=true" title="Book a content engine strategy call" /></section></div>}
     </div>

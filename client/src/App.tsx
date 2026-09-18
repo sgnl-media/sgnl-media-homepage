@@ -9,6 +9,7 @@ import Article from "./pages/Article";
 import Shows from "./pages/Shows";
 import ShowArticle from "./pages/ShowArticle";
 import HowToStartShowArticle from "./pages/HowToStartShowArticle";
+import ReadTheRoom from "./pages/ReadTheRoom";
 
 
 function Router() {
@@ -16,6 +17,10 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/shows"} component={Shows} />
+      <Route path={"/read-the-room"} component={ReadTheRoom} />
+      <Route path={"/read-the-room/the-market-is-telling-you-what-it-wants"} component={ShowArticle} />
+      <Route path={"/read-the-room/how-to-start-a-show-for-your-brand"} component={HowToStartShowArticle} />
+      <Route path={"/read-the-room/which-platform-should-i-focus-on"} component={Article} />
       <Route path={"/shows/read-the-room"} component={ShowArticle} />
       <Route path={"/shows/what-is-marketing"} component={ShowArticle} />
       <Route path={"/shows/sgnl-ceo"} component={ShowArticle} />

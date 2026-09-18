@@ -86,9 +86,9 @@ export default function ShowArticle() {
     </div>
 
     <header className={`show-article-header ${headerHidden ? "is-hidden" : ""} ${progressDocked ? "has-docked-progress" : ""}`}>
-      <a href="/shows" className="editorial-mark">SGNL <span>Media</span></a>
+      <a href="/" className="editorial-mark">SGNL <span>Media</span></a>
       <span>{article.kicker}</span>
-      <a href="/shows">All shows <ArrowUpRight size={14} /></a>
+      <a href="/read-the-room">All articles <ArrowUpRight size={14} /></a>
     </header>
 
     <div className="show-article-top">
