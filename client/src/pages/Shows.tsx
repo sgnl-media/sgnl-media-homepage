@@ -95,7 +95,7 @@ export default function Shows() {
 
         <section className="shows-close">
           <span className="shows-portfolio-label">You’ve seen the system work.</span>
-          <h2>Now put it behind<br />your expertise.</h2>
+          <h2>We’d love to talk with<br />you and your team.</h2>
           <button className="button lime large" onClick={() => setBookingOpen(true)}>Book a call <ArrowUpRight size={17} /></button>
         </section>
       </main>
