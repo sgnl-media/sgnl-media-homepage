@@ -218,3 +218,15 @@
   .testimonial-slide .story-card,.testimonial-slide .story-layout--single { width:100%; }
   .testimonial-slide .story-layout--single .story-video { width:100%; max-width:none; aspect-ratio:9/16; }
 }
+
+/* Proof over Promises now uses the same uninterrupted sideways marquee language as Recent Work. */
+.testimonial-marquee { width:calc(100% + 7.5vw); margin-right:-7.5vw; overflow:hidden; }
+.testimonial-track { --story-gap:clamp(18px,3vw,44px); display:flex !important; grid-template-columns:none; gap:var(--story-gap); width:max-content; max-width:none; overflow:visible; padding:0; animation:testimonialScroll 38s linear infinite; will-change:transform; }
+.testimonial-track:hover { animation-play-state:running; }
+.testimonial-track .testimonial-slide { flex:0 0 clamp(180px,22vw,267px); width:clamp(180px,22vw,267px); min-width:clamp(180px,22vw,267px); max-width:none; scroll-snap-align:none; }
+@keyframes testimonialScroll { from { transform:translateX(0); } to { transform:translateX(calc(-50% - (var(--story-gap) / 2))); } }
+@media(max-width:600px) {
+  .testimonial-marquee { width:calc(100% + 5vw); margin-right:-5vw; }
+  .testimonial-track { --story-gap:12px; width:max-content; max-width:none; overflow:visible; margin:0; padding:0; touch-action:auto; scroll-snap-type:none; animation-duration:32s; }
+  .testimonial-track .testimonial-slide { flex-basis:min(64vw,235px); width:min(64vw,235px); min-width:min(64vw,235px); }
+}
