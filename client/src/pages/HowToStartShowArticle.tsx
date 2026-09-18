@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowUpRight, ChevronDown, X } from "lucide-react";
+import { ArrowUp, ArrowUpRight, ChevronDown, X } from "lucide-react";
 import { Link } from "wouter";
 import { toast } from "sonner";
 
@@ -34,6 +34,8 @@ export default function HowToStartShowArticle() {
   const [activeId, setActiveId] = useState<string>("why-most-brand-shows-fail-in-the-first-ten-episodes");
   const [progress, setProgress] = useState(0);
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [headerHidden, setHeaderHidden] = useState(false);
+  const [progressDocked, setProgressDocked] = useState(false);
   const published = useMemo(() => "September 17, 2026", []);
 
   useEffect(() => {
@@ -52,13 +54,21 @@ export default function HowToStartShowArticle() {
   }, []);
 
   useEffect(() => {
+    let lastY = window.scrollY;
     const onScroll = () => {
       const body = bodyRef.current;
       if (!body) return;
+      const y = window.scrollY;
       const start = body.offsetTop;
       const end = start + body.offsetHeight - window.innerHeight;
-      const value = end > start ? ((window.scrollY - start) / (end - start)) * 100 : 100;
+      const value = end > start ? ((y - start) / (end - start)) * 100 : 100;
       setProgress(Math.min(100, Math.max(0, value)));
+      if (!window.matchMedia("(max-width: 700px)").matches || y < 72) setHeaderHidden(false);
+      else if (y > lastY + 1) setHeaderHidden(true);
+      else if (y < lastY - 1) setHeaderHidden(false);
+      const inlineProgress = document.querySelector<HTMLElement>(".brand-reading-progress-mobile");
+      setProgressDocked(Boolean(inlineProgress && inlineProgress.getBoundingClientRect().bottom <= 0));
+      lastY = y;
     };
     const observer = new IntersectionObserver(entries => {
       const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -77,9 +87,11 @@ export default function HowToStartShowArticle() {
     return () => { document.body.style.overflow = ""; };
   }, [bookingOpen]);
 
-  return <div className="brand-article-page">
-    <div className="brand-reading-progress" aria-label={`${Math.round(progress)}% complete`}><i style={{ width: `${progress}%` }} />{[25, 50, 75].map(marker => <b key={marker} style={{ left: `${marker}%` }} />)}<span>{Math.round(progress)}% / 5 min</span></div>
-    <header className="brand-article-header"><Link href="/" className="editorial-mark">SGNL <span>Media</span></Link><nav><Link href="/">Home</Link><Link href="/shows">Shows</Link></nav><button onClick={() => setBookingOpen(true)}>Book a call <ArrowUpRight size={14} /></button></header>
+  const backToTop = () => document.getElementById("brand-article-top")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+
+  return <div className="brand-article-page" id="brand-article-top">
+    <div className={`brand-reading-progress ${progressDocked ? "is-mobile-docked" : ""}`} aria-label={`${Math.round(progress)}% complete`}><i style={{ width: `${progress}%` }} />{[25, 50, 75].map(marker => <b key={marker} style={{ left: `${marker}%` }} />)}<span>{Math.round(progress)}% / 5 min</span></div>
+    <header className={`brand-article-header ${headerHidden ? "is-hidden" : ""} ${progressDocked ? "has-docked-progress" : ""}`}><Link href="/" className="editorial-mark">SGNL <span>Media</span></Link><nav><Link href="/">Home</Link><Link href="/shows">Shows</Link></nav><button onClick={() => setBookingOpen(true)}>Book a call <ArrowUpRight size={14} /></button></header>
 
     <main>
       <section className="brand-article-hero">
@@ -137,6 +149,8 @@ export default function HowToStartShowArticle() {
     </main>
 
     <footer className="editorial-footer"><span>SGNL Media / Tampa, FL</span><span>© 2026</span><Link href="/shows">Explore our shows <ArrowUpRight size={14} /></Link></footer>
+
+    <button className={`article-back-top ${progress > 5 ? "is-visible" : ""}`} type="button" onClick={backToTop} aria-label="Back to top"><ArrowUp size={16} /><span>Top</span></button>
 
     {bookingOpen && <div className="modal-backdrop" onMouseDown={event => event.target === event.currentTarget && setBookingOpen(false)}><section className="modal-card cal-modal" role="dialog" aria-modal="true" aria-label="Book a call"><button className="modal-close" onClick={() => setBookingOpen(false)} aria-label="Close booking"><X size={18} /></button><iframe src="https://cal.com/andrew-moullin-qldwj3/content-engine-strategy-call?layout=month_view&useSlotsViewOnSmallScreen=true" title="Book a content engine strategy call" /></section></div>}
   </div>;

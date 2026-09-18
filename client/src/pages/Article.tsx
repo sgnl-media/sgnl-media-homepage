@@ -1,13 +1,37 @@
-import { ArrowDown, ArrowUpRight, Check, Circle, Minus, Plus } from "lucide-react";
+import { ArrowUp, ArrowUpRight } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const sections = ["The thesis", "The system", "The evidence", "The operating rule"];
 
 export default function Article() {
-  return <main className="editorial-page">
-    <header className="editorial-header"><a href="/" className="editorial-mark">SGNL <span>Media</span></a><span className="editorial-issue">FIELD NOTE / 01—2026</span><a className="editorial-back" href="/">Back to SGNL <ArrowUpRight size={15} /></a></header>
+  const [progress, setProgress] = useState(0);
+  const [headerHidden, setHeaderHidden] = useState(false);
+  const [progressDocked, setProgressDocked] = useState(false);
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(100, Math.max(0, (y / max) * 100)) : 0);
+      if (!window.matchMedia("(max-width: 700px)").matches || y < 72) setHeaderHidden(false);
+      else if (y > lastY + 1) setHeaderHidden(true);
+      else if (y < lastY - 1) setHeaderHidden(false);
+      const inlineProgress = document.querySelector<HTMLElement>(".editorial-reading-progress-mobile");
+      setProgressDocked(Boolean(inlineProgress && inlineProgress.getBoundingClientRect().bottom <= 0));
+      lastY = y;
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  const backToTop = () => document.getElementById("editorial-article-top")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+
+  return <main className="editorial-page" id="editorial-article-top">
+    <div className={`editorial-reading-progress ${progressDocked ? "is-mobile-docked" : ""}`}><i style={{ width: `${progress}%` }} /><span>{Math.round(progress)}% / 12 min</span></div>
+    <header className={`editorial-header ${headerHidden ? "is-hidden" : ""} ${progressDocked ? "has-docked-progress" : ""}`}><a href="/" className="editorial-mark">SGNL <span>Media</span></a><span className="editorial-issue">FIELD NOTE / 01—2026</span><a className="editorial-back" href="/">Back to SGNL <ArrowUpRight size={15} /></a></header>
     <div className="editorial-grid editorial-hero-grid">
       <div className="editorial-kicker">Strategy memo <span>·</span> Independent business magazine</div>
-      <div className="editorial-hero-copy"><h1>We build the media systems behind category-leading brands and experts.</h1><p>Positioning, production, distribution, and conversion infrastructure—built to turn real expertise into authority, demand, and pipeline.</p><div className="editorial-byline"><span>By SGNL Media</span><span>12 min read</span><span>September 2026</span></div></div>
+      <div className="editorial-hero-copy"><h1>We build the media systems behind category-leading brands and experts.</h1><div className="editorial-reading-progress-mobile"><div><i style={{ width: `${progress}%` }} /></div><span>{Math.round(progress)}% complete / 12 min read</span></div><p>Positioning, production, distribution, and conversion infrastructure—built to turn real expertise into authority, demand, and pipeline.</p><div className="editorial-byline"><span>By SGNL Media</span><span>12 min read</span><span>September 2026</span></div></div>
       <figure className="editorial-hero-image"><img src="/manus-storage/editorial-founder_7a71b679.jpg" alt="Founder studying a wall of editorial images and notes in a studio" /><figcaption><span>01</span> The work begins before the camera turns on.</figcaption></figure>
     </div>
     <div className="editorial-rule" />
@@ -21,5 +45,6 @@ export default function Article() {
       </article>
     </div>
     <footer className="editorial-footer"><span>SGNL Media / Tampa, FL</span><span>© 2026</span><a href="/">Return to home <ArrowUpRight size={14} /></a></footer>
+    <button className={`article-back-top ${progress > 8 ? "is-visible" : ""}`} type="button" onClick={backToTop} aria-label="Back to top"><ArrowUp size={16} /><span>Top</span></button>
   </main>;
 }
