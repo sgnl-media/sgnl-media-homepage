@@ -12,13 +12,13 @@ const readTheRoomFormats = [
   {
     name: "The Read",
     body: "A sharp editorial briefing on the signals shaping the market.",
-    video: "/manus-storage/S-S-4-web_e865066d.mp4",
+    video: "/manus-storage/A-T-11-web_e3852aaf.mp4",
     href: "/shows/read-the-room",
   },
   {
     name: "In The Room",
     body: "Candid field conversations with operators doing the work.",
-    video: "/manus-storage/A-T-11-web_e3852aaf.mp4",
+    video: "/manus-storage/S-S-4-web_e865066d.mp4",
     href: "/shows/read-the-room",
   },
 ];
