@@ -844,3 +844,48 @@
 .announcement-viewport:active .announcement-cta { transform:scale(.97); }
 
 .announcement-bar .announcement-cta { display:inline-flex; margin-left:0; text-decoration:none; }
+
+.announcement-message { grid-template-columns:minmax(max-content,1.1fr) minmax(max-content,.75fr) auto; }
+.announcement-proof { min-width:176px; padding-left:24px; border-left:1px solid rgba(20,21,21,.5); display:grid; gap:5px; align-content:center; }
+.announcement-stars { display:flex !important; gap:3px; margin:0 !important; color:var(--ink); text-decoration:none !important; }
+.announcement-stars svg:nth-child(3) { color:var(--coral); }
+.announcement-proof small { font:500 7px var(--mono); letter-spacing:.045em; text-transform:uppercase; white-space:nowrap; }
+@media(max-width:1100px) {
+  .announcement-unit { gap:18px; }
+  .announcement-title,.announcement-copy,.announcement-proof { padding-left:17px; padding-right:17px; }
+  .announcement-title { padding-left:0; }
+  .announcement-proof { min-width:160px; }
+  .announcement-cta { min-width:180px; }
+}
+@media(max-width:900px) {
+  .announcement-message { display:grid; grid-template-columns:minmax(0,1fr) auto; }
+  .announcement-title { grid-column:1; grid-row:1; }
+  .announcement-copy { grid-column:1; grid-row:2; }
+  .announcement-proof { grid-column:2; grid-row:1 / span 2; padding-left:14px; padding-right:0; }
+}
+@media(max-width:600px) {
+  .announcement-bar,.announcement-group { min-height:72px; }
+  .announcement-message { display:grid; grid-template-columns:1fr; gap:2px; }
+  .announcement-title,.announcement-copy,.announcement-proof { grid-column:1; grid-row:auto; }
+  .announcement-copy { margin-top:0; }
+  .announcement-proof { min-width:0; padding:3px 0 0; border:0; display:flex; align-items:center; gap:6px; }
+  .announcement-stars { gap:1px; }
+  .announcement-stars svg { width:8px; height:8px; }
+  .announcement-proof small { font-size:6px; }
+}
+@media(max-width:340px) {
+  .announcement-bar,.announcement-group { min-height:70px; }
+  .announcement-proof { gap:4px; }
+  .announcement-proof small { font-size:5.5px; }
+}
+
+@media(max-width:600px) {
+  .announcement-cta { min-width:105px; }
+}
+@media(max-width:340px) {
+  .announcement-cta { min-width:86px; }
+}
+
+@media(max-width:600px) {
+  .announcement-bar .announcement-proof { display:flex; }
+}
