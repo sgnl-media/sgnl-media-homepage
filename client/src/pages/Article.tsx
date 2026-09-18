@@ -45,6 +45,6 @@ export default function Article() {
       </article>
     </div>
     <footer className="editorial-footer"><span>SGNL Media / Tampa, FL</span><span>© 2026</span><a href="/read-the-room">More from the Room <ArrowUpRight size={14} /></a></footer>
-    <button className={`article-back-top ${progress > 8 ? "is-visible" : ""}`} type="button" onClick={backToTop} aria-label="Back to top"><ArrowUp size={16} /><span>Top</span></button>
+    <button type="button" className={`article-back-top ${progress > 8 ? "is-visible" : ""}`} onClick={backToTop} aria-label="Back to top"><ArrowUp size={16} /><span>Top</span></button>
   </main>;
 }

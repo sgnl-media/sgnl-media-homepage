@@ -91,7 +91,7 @@ export default function HowToStartShowArticle() {
 
   return <div className="brand-article-page" id="brand-article-top">
     <div className={`brand-reading-progress ${progressDocked ? "is-mobile-docked" : ""}`} aria-label={`${Math.round(progress)}% complete`}><i style={{ width: `${progress}%` }} />{[25, 50, 75].map(marker => <b key={marker} style={{ left: `${marker}%` }} />)}<span>{Math.round(progress)}% / 5 min</span></div>
-    <header className={`brand-article-header ${headerHidden ? "is-hidden" : ""} ${progressDocked ? "has-docked-progress" : ""}`}><Link href="/" className="editorial-mark">SGNL <span>Media</span></Link><nav><Link href="/">Home</Link><Link href="/read-the-room">Read the Room</Link></nav><button onClick={() => setBookingOpen(true)}>Book a call <ArrowUpRight size={14} /></button></header>
+    <header className={`brand-article-header ${headerHidden ? "is-hidden" : ""} ${progressDocked ? "has-docked-progress" : ""}`}><Link href="/" className="editorial-mark">SGNL <span>Media</span></Link><nav><Link href="/">Home</Link><Link href="/read-the-room">Read the Room</Link></nav><button type="button" onClick={() => setBookingOpen(true)}>Book a call <ArrowUpRight size={14} /></button></header>
 
     <main>
       <section className="brand-article-hero">
@@ -142,7 +142,7 @@ export default function HowToStartShowArticle() {
       </div>
 
       <div className="brand-article-after">
-        <section className="brand-article-cta" aria-labelledby="article-cta"><span>Build the asset</span><h2 id="article-cta">Want help building a show your brand actually owns?</h2><p>We build and run the whole thing, from format to distribution to the page that converts.</p><button onClick={() => setBookingOpen(true)}>Book a call <ArrowUpRight size={16} /></button></section>
+        <section className="brand-article-cta" aria-labelledby="article-cta"><span>Build the asset</span><h2 id="article-cta">Want help building a show your brand actually owns?</h2><p>We build and run the whole thing, from format to distribution to the page that converts.</p><button type="button" onClick={() => setBookingOpen(true)}>Book a call <ArrowUpRight size={16} /></button></section>
 
         <section className="brand-related" aria-labelledby="related-articles"><div className="brand-related-heading"><span>Continue reading</span><h2 id="related-articles">Related articles</h2></div><div className="brand-related-grid">{["How to build a repeatable content format", "The distribution system behind a show", "Why authority compounds before reach"].map((title, index) => <article key={title}><span>0{index + 1} / Coming soon</span><strong>{title}</strong><button type="button" onClick={() => toast("Article coming soon")}>Read next <ArrowUpRight size={14} /></button></article>)}</div></section>
       </div>
@@ -150,8 +150,8 @@ export default function HowToStartShowArticle() {
 
     <footer className="editorial-footer"><span>SGNL Media / Tampa, FL</span><span>© 2026</span><Link href="/read-the-room">More from the Room <ArrowUpRight size={14} /></Link></footer>
 
-    <button className={`article-back-top ${progress > 5 ? "is-visible" : ""}`} type="button" onClick={backToTop} aria-label="Back to top"><ArrowUp size={16} /><span>Top</span></button>
+    <button type="button" className={`article-back-top ${progress > 5 ? "is-visible" : ""}`} onClick={backToTop} aria-label="Back to top"><ArrowUp size={16} /><span>Top</span></button>
 
-    {bookingOpen && <div className="modal-backdrop" onMouseDown={event => event.target === event.currentTarget && setBookingOpen(false)}><section className="modal-card cal-modal" role="dialog" aria-modal="true" aria-label="Book a call"><button className="modal-close" onClick={() => setBookingOpen(false)} aria-label="Close booking"><X size={18} /></button><iframe src="https://cal.com/andrew-moullin-qldwj3/content-engine-strategy-call?layout=month_view&useSlotsViewOnSmallScreen=true" title="Book a content engine strategy call" /></section></div>}
+    {bookingOpen && <div className="modal-backdrop" onMouseDown={event => event.target === event.currentTarget && setBookingOpen(false)}><section className="modal-card cal-modal" role="dialog" aria-modal="true" aria-label="Book a call"><button type="button" className="modal-close" onClick={() => setBookingOpen(false)} aria-label="Close booking"><X size={18} /></button><iframe src="https://cal.com/andrew-moullin-qldwj3/content-engine-strategy-call?layout=month_view&useSlotsViewOnSmallScreen=true" title="Book a content engine strategy call" /></section></div>}
   </div>;
 }

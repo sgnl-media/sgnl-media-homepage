@@ -130,6 +130,6 @@ export default function ShowArticle() {
       </article>
     </div>
 
-    <button className={`article-back-top ${progress > 8 ? "is-visible" : ""}`} type="button" onClick={backToTop} aria-label="Back to top"><ArrowUp size={16} /><span>Top</span></button>
+    <button type="button" className={`article-back-top ${progress > 8 ? "is-visible" : ""}`} onClick={backToTop} aria-label="Back to top"><ArrowUp size={16} /><span>Top</span></button>
   </main>;
 }
