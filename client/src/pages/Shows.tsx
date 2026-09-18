@@ -5,8 +5,8 @@ import { Link } from "wouter";
 const readTheRoomFormats = [
   {
     name: "Podcast",
-    body: "Long-form conversations that make expertise impossible to miss.",
-    video: "/manus-storage/A-E-4-web_71383a36.mp4",
+    body: "Marketing Decoded—long-form conversations that make expertise impossible to miss.",
+    video: "/manus-storage/marketing-decoded-web_d3e81489.mp4",
     href: "/shows/read-the-room",
   },
   {
@@ -20,27 +20,6 @@ const readTheRoomFormats = [
     body: "Candid field conversations with operators doing the work.",
     video: "/manus-storage/S-S-4-web_e865066d.mp4",
     href: "/shows/read-the-room",
-  },
-];
-
-const streetShows = [
-  {
-    name: "Crosswalk Conversations",
-    body: "Fast answers from people caught between one block and the next.",
-    video: "/manus-storage/A-T-1-web_32011964.mp4",
-    href: "/shows/what-is-marketing",
-  },
-  {
-    name: "Fit or Fiction",
-    body: "Street-level conversations about what actually holds up.",
-    video: "/manus-storage/S-S-4-web_e865066d.mp4",
-    href: "/shows/what-is-marketing",
-  },
-  {
-    name: "Robots Are Coming",
-    body: "Real people reacting to what artificial intelligence changes next.",
-    video: "/manus-storage/Parlseevideo1_22-web_63963a38.mp4",
-    href: "/shows/what-is-marketing",
   },
 ];
 
@@ -99,22 +78,6 @@ export default function Shows() {
           <div className="show-format-grid">{readTheRoomFormats.map(format => <FormatCard {...format} key={format.name} />)}</div>
         </section>
 
-        <section className="shows-portfolio-section shows-street-section">
-          <div className="shows-portfolio-heading">
-            <span className="shows-portfolio-label">Street shows</span>
-            <h2>Real questions.<br /><em>Unscripted answers.</em></h2>
-          </div>
-          <div className="show-format-grid">{streetShows.map(show => <FormatCard {...show} key={show.name} />)}</div>
-        </section>
-
-        <section className="shows-pioneers">
-          <span className="shows-portfolio-label">Pioneers Podcast</span>
-          <div>
-            <p>Pioneers Podcast, co-hosted by Andrew Moullin and Chad Carrodus, for non-technical operators working out what AI actually changes.</p>
-            <Link href="/shows/sgnl-ceo">Explore Pioneers Podcast <ArrowUpRight size={16} /></Link>
-          </div>
-        </section>
-
         <section className="shows-close">
           <span className="shows-portfolio-label">You’ve seen the system work.</span>
           <h2>Now put it behind<br />your expertise.</h2>
@@ -122,7 +85,7 @@ export default function Shows() {
         </section>
       </main>
 
-      <footer className="footer"><div className="footer-main"><div><Link href="/" className="wordmark">SGNL <span>Media</span></Link><p>We build the media teams behind category-leading brands and experts.</p></div><div className="footer-links"><div><b>Company</b><Link href="/">Home</Link><a href="/#services">Services</a><Link href="/shows">Shows</Link></div><div><b>Shows</b><Link href="/shows/read-the-room">Read the room</Link><Link href="/shows/what-is-marketing">Street shows</Link><Link href="/shows/sgnl-ceo">Pioneers Podcast</Link></div><div><b>Start</b><button onClick={() => setBookingOpen(true)}>Book a call</button></div></div></div><div className="footer-bottom"><span>© 2026 SGNL Media. Tampa, FL.</span><span>Privacy&nbsp;&nbsp;/&nbsp;&nbsp; Terms</span></div></footer>
+      <footer className="footer"><div className="footer-main"><div><Link href="/" className="wordmark">SGNL <span>Media</span></Link><p>We build the media teams behind category-leading brands and experts.</p></div><div className="footer-links"><div><b>Company</b><Link href="/">Home</Link><a href="/#services">Services</a><Link href="/shows">Shows</Link></div><div><b>Shows</b><Link href="/shows/read-the-room">Read the room</Link></div><div><b>Start</b><button onClick={() => setBookingOpen(true)}>Book a call</button></div></div></div><div className="footer-bottom"><span>© 2026 SGNL Media. Tampa, FL.</span><span>Privacy&nbsp;&nbsp;/&nbsp;&nbsp; Terms</span></div></footer>
 
       {bookingOpen && <div className="modal-backdrop" onMouseDown={event => event.target === event.currentTarget && setBookingOpen(false)}><section className="modal-card cal-modal" role="dialog" aria-modal="true" aria-label="Book a call"><button className="modal-close" onClick={() => setBookingOpen(false)} aria-label="Close booking"><X size={18} /></button><iframe src="https://cal.com/andrew-moullin-qldwj3/content-engine-strategy-call?layout=month_view&useSlotsViewOnSmallScreen=true" title="Book a content engine strategy call" /></section></div>}
     </div>
