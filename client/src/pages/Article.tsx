@@ -32,7 +32,7 @@ export default function Article() {
     <div className="editorial-grid editorial-hero-grid">
       <div className="editorial-kicker">Strategy memo <span>·</span> Independent business magazine</div>
       <div className="editorial-hero-copy"><h1>We build the media systems behind category-leading brands and experts.</h1><div className="editorial-reading-progress-mobile"><div><i style={{ width: `${progress}%` }} /></div><span>{Math.round(progress)}% complete / 12 min read</span></div><p>Positioning, production, distribution, and conversion infrastructure—built to turn real expertise into authority, demand, and pipeline.</p><div className="editorial-byline"><span>By SGNL Media</span><span>12 min read</span><span>September 2026</span></div></div>
-      <figure className="editorial-hero-image"><img src="/manus-storage/editorial-founder_7a71b679.jpg" alt="Founder studying a wall of editorial images and notes in a studio" /><figcaption><span>01</span> The work begins before the camera turns on.</figcaption></figure>
+      <figure className="editorial-hero-image"><img src="/media/editorial-founder_7a71b679.jpg" alt="Founder studying a wall of editorial images and notes in a studio" /><figcaption><span>01</span> The work begins before the camera turns on.</figcaption></figure>
     </div>
     <div className="editorial-rule" />
     <div className="editorial-layout">

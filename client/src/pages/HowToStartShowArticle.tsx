@@ -97,7 +97,7 @@ export default function HowToStartShowArticle() {
       <section className="brand-article-hero">
         <div className="brand-article-category">Content Strategy</div>
         <div className="brand-article-title"><h1>How to Start a Show for Your Brand</h1><div className="brand-reading-progress-mobile" aria-label={`${Math.round(progress)}% complete`}><div><i style={{ width: `${progress}%` }} />{[25, 50, 75].map(marker => <b key={marker} style={{ left: `${marker}%` }} />)}</div><span>{Math.round(progress)}% complete / 5 min read</span></div><div className="brand-article-byline"><span>SGNL Media</span><span>{published}</span><span>5 min read</span></div></div>
-        <figure><img src="/manus-storage/editorial-founder_7a71b679.jpg" alt="Creative strategist reviewing a wall of show concepts in a studio" /></figure>
+        <figure><img src="/media/editorial-founder_7a71b679.jpg" alt="Creative strategist reviewing a wall of show concepts in a studio" /></figure>
       </section>
 
       <details className="brand-article-mobile-toc"><summary>On this page <ChevronDown size={17} /></summary><Contents activeId={activeId} items={tocItems} /></details>

@@ -122,7 +122,7 @@ export default function ShowArticle() {
           <div>
             <h2>{title}</h2>
             <p>{body}</p>
-            {index === 0 && <figure className="show-cinematic-photo"><img src="/manus-storage/editorial-founder_7a71b679.jpg" alt="Founder studying a wall of editorial images in a studio" /><figcaption><span>FIELD NOTE / 01</span> Strategy starts in the room before the room is ready.</figcaption></figure>}
+            {index === 0 && <figure className="show-cinematic-photo"><img src="/media/editorial-founder_7a71b679.jpg" alt="Founder studying a wall of editorial images in a studio" /><figcaption><span>FIELD NOTE / 01</span> Strategy starts in the room before the room is ready.</figcaption></figure>}
             {index === 1 && <><div className="show-systems-placeholder"><div className="systems-placeholder-head"><span>PROPRIETARY SYSTEM / SGNL—04</span><span>DIAGRAM PLACEHOLDER</span></div><div className="placeholder-flow"><i>POSITIONING</i><b>→</b><i>PRODUCTION</i><b>→</b><i>DISTRIBUTION</i><b>→</b><i>CONVERSION</i></div><small>Replace with the final show-specific systems diagram.</small></div><div className="show-article-callout"><strong>The memo</strong><span>Make the next good decision obvious.</span></div></>}
           </div>
         </section>)}

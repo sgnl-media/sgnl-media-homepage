@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Link } from "wouter";
+import LazyVideo from "@/components/LazyVideo";
 
 const readTheRoomFormats = [
   {
     name: "Podcast",
     body: "Marketing Decoded—long-form conversations that make expertise impossible to miss.",
-    video: "/manus-storage/marketing-decoded-web_d3e81489.mp4",
+    video: "/media/marketing-decoded-web_d3e81489.mp4",
     embed: undefined,
     href: "/shows/read-the-room",
   },
   {
     name: "Live Selling",
     body: "A live format that turns attention into a clear next action.",
-    video: "/manus-storage/live-selling-web_99481ca7.mp4",
+    video: "/media/live-selling-web_99481ca7.mp4",
     embed: undefined,
     href: "/shows/read-the-room",
   },
   {
     name: "In The Room",
     body: "Candid field conversations with operators doing the work.",
-    video: "/manus-storage/S-S-4-web_e865066d.mp4",
+    video: "/media/S-S-4-web_e865066d.mp4",
     embed: undefined,
     href: "/shows/read-the-room",
   },
@@ -30,7 +31,7 @@ function FormatCard({ name, body, video, embed, href }: (typeof readTheRoomForma
   return (
     <article className="show-format-card">
       <div className="show-format-video">
-        {embed ? <iframe src={embed} title={`${name} Instagram reel`} allow="autoplay; encrypted-media; picture-in-picture" loading="lazy" allowFullScreen /> : <video src={video} muted autoPlay loop playsInline preload="metadata" />}
+        {embed ? <iframe src={embed} title={`${name} Instagram reel`} allow="autoplay; encrypted-media; picture-in-picture" loading="lazy" allowFullScreen /> : <LazyVideo src={video} />}
         <span>SGNL / ORIGINAL</span>
       </div>
       <div className="show-format-copy">

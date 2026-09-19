@@ -82,7 +82,7 @@ export default function ReadTheRoom() {
         <div className="read-room-section-label"><span>Latest signal</span><span>01 / {String(articles.length).padStart(2, "0")}</span></div>
         <Link href={articles[0].href} className="read-room-feature-link">
           <div className="read-room-feature-copy"><div><span>{articles[0].category} / {articles[0].issue}</span><span>{articles[0].date} · {articles[0].read}</span></div><h2>{articles[0].title}</h2><p>{articles[0].excerpt}</p><strong>Read the field note <ArrowUpRight size={18} /></strong></div>
-          <figure><img src="/manus-storage/editorial-founder_7a71b679.jpg" alt="Founder studying a wall of editorial images and notes" /><figcaption>Signal precedes scale.</figcaption></figure>
+          <figure><img src="/media/editorial-founder_7a71b679.jpg" alt="Founder studying a wall of editorial images and notes" /><figcaption>Signal precedes scale.</figcaption></figure>
         </Link>
       </section>
 
